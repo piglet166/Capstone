@@ -5,42 +5,42 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     
-    
     // Start is called before the first frame update
     void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.A)) Walk(true);
-        if (Input.GetKey(KeyCode.D)) Walk(false);
-        if (Input.GetKey(KeyCode.Q)) Dash(true);
-        if (Input.GetKey(KeyCode.E)) Dash(false);
-        if (Input.GetKeyDown(KeyCode.Space)) Jump();
-        if (Input.GetMouseButtonDown(1)) Melee();
-        if (Input.GetMouseButtonDown(0)) Shoot();
+    public float Walk() {
+        if (Input.GetKey(KeyCode.D)) return 1f;
+        else if (Input.GetKey(KeyCode.A)) return -1f;
+        else return 0f;
     }
 
-    void Walk(bool Left) {
-
+    public float Dash() {
+        if (Input.GetKeyDown(KeyCode.E)) return 1f;
+        else if (Input.GetKeyDown(KeyCode.Q)) return -1f;
+        else return 0f;
     }
 
-    void Dash(bool Left) {
-
+    public bool Jump() {
+        if (Input.GetKeyDown(KeyCode.Space)) return true;
+        else return false;
     }
 
-    void Jump() {
-
+    public bool Melee() {
+        if (Input.GetMouseButtonDown(1)) return true;
+        else return false;
     }
 
-    void Melee() {
-
-    }
-
-    void Shoot() {
-
+    public bool Shoot() {
+        if (Input.GetMouseButtonDown(0)) return true;
+        else return false;
     }
 }

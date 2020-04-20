@@ -18,9 +18,23 @@ public class PlayerInput : MonoBehaviour
     }
 
     public float Walk() {
-        if (Input.GetKey(KeyCode.D)) return 1f;
-        else if (Input.GetKey(KeyCode.A)) return -1f;
-        else return 0f;
+        int button = 0;
+        if (Input.GetKey(KeyCode.D)) button = 1;
+        else if (Input.GetKey(KeyCode.A)) button = 2;
+
+        switch (button) {
+            case 0:
+                return 0f;
+            case 1:
+                return 1f;
+            case 2:
+                return -1f;
+            default:
+                Debug.Log("Eror in PlayerInput Walk()");
+                break;
+        }
+
+        return 0f;
     }
 
     public float Dash() {

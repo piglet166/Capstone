@@ -2273,6 +2273,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 652617530}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &731122619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8065333947290731789, guid: 35dec0ce50892174aafd90f05a8c9de8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1436201645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &731122622
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731122619}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b03ffd58361734047a9b3080d0f23d5f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &757460603
 GameObject:
   m_ObjectHideFlags: 0
@@ -3871,6 +3896,11 @@ PrefabInstance:
       propertyPath: maxSpeed
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 4326720926803302632, guid: 35dec0ce50892174aafd90f05a8c9de8,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 731122622}
     - target: {fileID: 6614327338516830951, guid: 35dec0ce50892174aafd90f05a8c9de8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3930,6 +3960,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732733037935105588, guid: 35dec0ce50892174aafd90f05a8c9de8,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.04
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35dec0ce50892174aafd90f05a8c9de8, type: 3}

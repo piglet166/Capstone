@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3664116086655337861}
   - component: {fileID: 8217144004155401863}
   - component: {fileID: 378195780278140097}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,4 +107,4 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 3.2, y: 0.32}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.03

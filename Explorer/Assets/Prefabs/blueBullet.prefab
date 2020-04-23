@@ -144,3 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: {fileID: 1599558575800509106, guid: 728bdacfa0b41834cabd68bb0aea92c5, type: 3}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024

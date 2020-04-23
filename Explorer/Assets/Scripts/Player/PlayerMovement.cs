@@ -4,20 +4,32 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("References")]
     public Rigidbody2D rb;
     public GameObject pointArm;
+    public GameObject effect;
     public Renderer arms;
     public Animator anim;
     public PlayerInput input;
+    public Transform groundCheck;
+    public Transform muzzle;
+    public LayerMask groundLayer;
+    public LayerMask enemyLayer;
     [SerializeField]
     bool left;
-
-
-    public float maxSpeed;
-    public float jumpSpeed;
     [SerializeField]
     float move;
+    [SerializeField]
+    bool grounded;
+
+    [Header("Speed")]
+    public float maxSpeed;
+    public float jumpSpeed;
+    public float airSpeed;
+    public float gcRadius;
+    public float attackRange;
     Vector3 worldPos;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -26,13 +38,13 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<PlayerInput>();
         left = false;
+        grounded = false;
     }
 
     void Update() 
     {
         CrossHair();
         Arms();
-        Dash();
         Jump();
         Melee();
     }
@@ -41,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Facing();
         Walk();
+
+        grounded = CheckGround();
+        anim.SetBool("Airborne", !grounded);
     }
 
     void CrossHair() {
@@ -73,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Walk() {
+
+        if (!grounded) return;
         move = input.Walk();
         anim.SetFloat("Speed", move);
 
@@ -82,21 +99,46 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Dash() {
-
-        float dash = input.Dash();
-        if (dash == 0f) return;
-        else if(dash < -0.01f) {
-
-        } else {
-
-        }
-    }
     void Jump() {
-
+        if (grounded && input.Jump()) {
+            rb.AddForce(new Vector2(0, jumpSpeed));
+        } else if (!grounded) {
+            move = input.Walk();
+            
+            rb.AddForce(new Vector2(move * airSpeed *Time.deltaTime, 0));
+        }
     }
 
     void Melee() {
+        if (input.Melee()) {
+            if (grounded) {
+                anim.SetTrigger("Attack");
 
+                Vector2 swooshPos = new Vector2(muzzle.position.x + .5f, muzzle.position.y);
+                GameObject swoosh = Instantiate(effect, swooshPos, Quaternion.identity);
+                Destroy(swoosh, .1f);
+
+                Collider2D[] hits = Physics2D.OverlapCircleAll(muzzle.position, attackRange, enemyLayer);
+
+                foreach (Collider2D enemy in hits) {
+                    enemy.GetComponent<Health>().TakeDamage(5);
+                }
+            } else {
+                anim.SetTrigger("Attack");
+                
+                Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1f, enemyLayer);
+
+                foreach (Collider2D enemy in hits) {
+                    enemy.GetComponent<Health>().TakeDamage(5);
+                }
+            }
+        }
+    }
+
+    bool CheckGround() {
+
+        bool ground = Physics2D.OverlapCircle(groundCheck.position, gcRadius, groundLayer);
+
+        return ground;
     }
 }

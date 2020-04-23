@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3108006851169820253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.657, y: 0, z: 0}
+  m_LocalPosition: {x: 0.508, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5497562928956559445}
@@ -156,7 +156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5781162005467506879}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4490606257594140349}
@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 3687857032605573343}
   - component: {fileID: 8464892951776286925}
   - component: {fileID: 6387066857291193570}
+  - component: {fileID: 8302373347702534110}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -342,9 +343,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.3109144}
+  m_Offset: {x: 0, y: -0.22}
   serializedVersion: 2
-  m_Radius: 0.1890856
+  m_Radius: 0.262
 --- !u!114 &3687857032605573343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,12 +372,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   pointArm: {fileID: 7673020780958588075}
+  effect: {fileID: 308258271628787743, guid: e039a5e3a27a22c4aa0751986478a6f9, type: 3}
   arms: {fileID: 124481081076436207}
   anim: {fileID: 4490606257846208521}
   input: {fileID: 0}
+  groundCheck: {fileID: 692114895731765950}
+  muzzle: {fileID: 4908500024953085940}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   left: 0
-  maxSpeed: 500
   move: 0
+  grounded: 0
+  maxSpeed: 500
+  jumpSpeed: 400
+  airSpeed: 100
+  gcRadius: 0.02
+  attackRange: 0.5
 --- !u!114 &6387066857291193570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +409,20 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2090183671865589994, guid: d5364cd2c584e65488a2108c89f660ca,
     type: 3}
   bulletForce: 20
+--- !u!114 &8302373347702534110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6959574535326927111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81a93b3b0842f2d44bfef2e0858af26f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 25
+  MaxHealth: 0
 --- !u!1 &7673020780958588075
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3107012930055625379}
   - component: {fileID: 3778876149454795004}
   - component: {fileID: 8540228752560678880}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: platformShort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,4 +107,4 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.96, y: 0.32}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.03

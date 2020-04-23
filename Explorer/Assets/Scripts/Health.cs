@@ -19,6 +19,8 @@ public class Health : MonoBehaviour
         if (health <= 0) {
             Die();
         }
+
+        if (transform.position.y < -3f) Die();
     }
 
     void Die() {

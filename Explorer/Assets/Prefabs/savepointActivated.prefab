@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140389763270427508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5911028115915082393}
@@ -41,9 +41,11 @@ GameObject:
   - component: {fileID: 5911028115915082393}
   - component: {fileID: 4264300224502799857}
   - component: {fileID: 6146031638521201355}
+  - component: {fileID: 923305716841429955}
+  - component: {fileID: 8650251975525755305}
   m_Layer: 11
   m_Name: savepointActivated
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,3 +141,41 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.17280397, y: 0.01}
   m_EdgeRadius: 0.15
+--- !u!95 &923305716841429955
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4259371579601408162}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6ac0dfdead5200842990572e1c86a387, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8650251975525755305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4259371579601408162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094935cf8dc5bc842a0d59ec2b566003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 2140389763270427508}
+  master: {fileID: 0}
+  anim: {fileID: 923305716841429955}
+  cpRadius: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256

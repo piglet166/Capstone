@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")]
     public Rigidbody2D rb;
     public GameObject pointArm;
-    public GameObject effect;
     public Renderer arms;
     public Animator anim;
     public PlayerInput input;
@@ -24,10 +23,12 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Speed")]
     public float maxSpeed;
+    public float walkSpeed;
     public float jumpSpeed;
     public float airSpeed;
     public float gcRadius;
     public float attackRange;
+    public float rotationDifference;
     Vector3 worldPos;
     
 
@@ -56,11 +57,13 @@ public class PlayerMovement : MonoBehaviour
 
         grounded = CheckGround();
         anim.SetBool("Airborne", !grounded);
+
+        CappedVelocity();
     }
 
     void CrossHair() {
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 20;
+        mousePos.z = rotationDifference;
         worldPos = Camera.main.ScreenToWorldPoint(mousePos);
     }
 
@@ -95,17 +98,23 @@ public class PlayerMovement : MonoBehaviour
 
         if (move == 0) rb.velocity = new Vector2(0f, rb.velocity.y);
         else {
-            rb.AddForce(new Vector2(move * maxSpeed * Time.deltaTime, rb.velocity.y));
+            rb.AddForce(new Vector2(move * walkSpeed * Time.deltaTime, rb.velocity.y));
         }
     }
 
     void Jump() {
         if (grounded && input.Jump()) {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
             rb.AddForce(new Vector2(0, jumpSpeed));
         } else if (!grounded) {
             move = input.Walk();
             
             rb.AddForce(new Vector2(move * airSpeed *Time.deltaTime, 0));
+
+            if(rb.velocity.y <= 0.01f && rb.velocity.y >= -0.01f && input.Jump()) {
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+                rb.AddForce(new Vector2(0, jumpSpeed));
+            }
         }
     }
 
@@ -113,11 +122,6 @@ public class PlayerMovement : MonoBehaviour
         if (input.Melee()) {
             if (grounded) {
                 anim.SetTrigger("Attack");
-
-                Vector2 swooshPos = new Vector2(muzzle.position.x + .5f, muzzle.position.y);
-                GameObject swoosh = Instantiate(effect, swooshPos, Quaternion.identity);
-                Destroy(swoosh, .1f);
-
                 Collider2D[] hits = Physics2D.OverlapCircleAll(muzzle.position, attackRange, enemyLayer);
 
                 foreach (Collider2D enemy in hits) {
@@ -140,5 +144,12 @@ public class PlayerMovement : MonoBehaviour
         bool ground = Physics2D.OverlapCircle(groundCheck.position, gcRadius, groundLayer);
 
         return ground;
+    }
+
+    void CappedVelocity() {
+
+        float cappedVelocity = Mathf.Min(rb.velocity.x, maxSpeed);
+
+        rb.velocity = new Vector3(cappedVelocity, rb.velocity.y);
     }
 }

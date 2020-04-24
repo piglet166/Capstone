@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
 
     private void Start() {
         Physics.IgnoreLayerCollision(0, 8);
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, .35f);
     }
 
     private void OnCollisionEnter2D (Collision2D collision) {

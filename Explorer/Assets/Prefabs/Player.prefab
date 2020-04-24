@@ -372,7 +372,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   pointArm: {fileID: 7673020780958588075}
-  effect: {fileID: 308258271628787743, guid: e039a5e3a27a22c4aa0751986478a6f9, type: 3}
   arms: {fileID: 1089679483388299611}
   anim: {fileID: 4490606257846208521}
   input: {fileID: 0}
@@ -388,10 +387,12 @@ MonoBehaviour:
   move: 0
   grounded: 0
   maxSpeed: 500
+  walkSpeed: 0
   jumpSpeed: 350
   airSpeed: 100
   gcRadius: 0.02
   attackRange: 0.5
+  rotationDifference: 0
 --- !u!114 &6387066857291193570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,6 +425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 25
   MaxHealth: 0
+  player: 1
 --- !u!1 &7673020780958588075
 GameObject:
   m_ObjectHideFlags: 0

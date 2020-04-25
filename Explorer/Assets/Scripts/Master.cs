@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Master : MonoBehaviour
 {
+    public static Master Instance { get; private set; }
+
     GameObject[] respawns;
     SavePoint[] savePoints;
     public GameObject respawnPrefab;
@@ -12,7 +14,16 @@ public class Master : MonoBehaviour
     public int deaths;
     public int enemiesLeft;
     public HealthBar hb;
-    
+
+    private void Awake() {
+        if (Instance == null) {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +67,7 @@ public class Master : MonoBehaviour
 
         player.gameObject.transform.position = respawnPos;
         player.health = 25;
+        deaths += 1;
     }
 
     public void EnemyDied() {

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2021672443324749113}
   - component: {fileID: 5384000270640668063}
   - component: {fileID: -8247095331676392886}
+  - component: {fileID: 7908487925305861382}
   m_Layer: 8
   m_Name: blueBullet
   m_TagString: Untagged
@@ -137,3 +138,20 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &7908487925305861382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090183671865589994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81a93b3b0842f2d44bfef2e0858af26f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  master: {fileID: 0}
+  health: 0
+  MaxHealth: 1
+  player: 0
+  bullet: 0

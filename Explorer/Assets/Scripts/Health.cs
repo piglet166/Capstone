@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     public int MaxHealth;
     public bool player;
     bool invincible;
+    public bool bullet;
 
     // Start is called before the first frame update
     void Start()
@@ -32,22 +33,36 @@ public class Health : MonoBehaviour
     void Die() {
         if (player) master.MasterRespawn();
 
-        Destroy(gameObject);
+        if (!player) {
+
+            if (!bullet) master.EnemyDied();
+
+            Destroy(gameObject);
+        }
     }
 
     public void Heal(int heal) {
-        if (player) health += heal;
+
+        if (player) health = health + heal;
+
+        if (health > MaxHealth) health = MaxHealth;
     }
 
     public void TakeDamage(int damage) {
         if (invincible) return;
-        health -= damage;
+        health = health - damage;
     }
 
     public void Invincible() {
-        if (Input.GetKeyDown(KeyCode.I) && player) {
-            invincible = true;
-            health = MaxHealth;
+        if (player) {
+            if (Input.GetKeyDown(KeyCode.I)) {
+                if (invincible) {
+                    invincible = false;
+                } else {
+                    invincible = true;
+                    health = MaxHealth;
+                }
+            }
         }
     }
 

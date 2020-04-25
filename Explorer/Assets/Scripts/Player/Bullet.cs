@@ -12,16 +12,17 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, .35f);
     }
 
-    private void OnCollisionEnter2D (Collision2D collision) {
+    private void OnTriggerEnter2D(Collider2D collision) {
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, .2f, enemyLayer);
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, .2f, enemyLayer);
 
-        foreach (Collider2D enemy in hits) {
-            enemy.GetComponent<Health>().TakeDamage(5);
-        }
+            foreach (Collider2D enemy in hits) {
+                enemy.GetComponent<Health>().TakeDamage(5);
+            }
 
-        GameObject hit = Instantiate(effect, transform.position, Quaternion.identity);
-        Destroy(hit, .5f);
-        Destroy(gameObject);
+            GameObject hit = Instantiate(effect, transform.position, Quaternion.identity);
+            Destroy(hit, .5f);
+            Destroy(gameObject);
+        
     }
 }

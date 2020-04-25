@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Master
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -16,11 +17,11 @@ TagManager:
   - 
   - 
   - Player
-  - NPC
+  - Health
   - Enemy
   - Ground
-  - AlliedProjectile
-  - EnemyProjectile
+  - 
+  - 
   - 
   - 
   - 

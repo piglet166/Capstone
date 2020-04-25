@@ -8,6 +8,10 @@ public class Master : MonoBehaviour
     SavePoint[] savePoints;
     public GameObject respawnPrefab;
     public Health player;
+    public Camera cam;
+    public int deaths;
+    public int enemiesLeft;
+    public HealthBar hb;
     
     // Start is called before the first frame update
     void Start()
@@ -19,12 +23,17 @@ public class Master : MonoBehaviour
             savePoints[i] = respawns[i].GetComponent<SavePoint>();
             savePoints[i].serialNumber = i;
         }
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        enemiesLeft = enemies.Length;
+
+        hb.SetMaxHealth(player.MaxHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        hb.ShowHealth(player.health);
     }
 
     public void MasterRecieve(int sr) {
@@ -43,7 +52,13 @@ public class Master : MonoBehaviour
             if (sp.isActive()) dest = sp;
         }
 
-        if (dest != null) Instantiate(respawnPrefab, dest.transform.position, dest.transform.rotation);
+        Vector3 respawnPos = new Vector3(dest.transform.position.x, dest.transform.position.y + 0.32f, 0f);
 
+        player.gameObject.transform.position = respawnPos;
+        player.health = 25;
+    }
+
+    public void EnemyDied() {
+        enemiesLeft -= 1;
     }
 }

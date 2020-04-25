@@ -17,6 +17,7 @@ public class SavePoint : MonoBehaviour
     void Start()
     {
         DeactivateCheckPoint();
+        master = GameObject.FindGameObjectWithTag("Master").GetComponent<Master>();
     }
 
     // Update is called once per frame
@@ -39,7 +40,7 @@ public class SavePoint : MonoBehaviour
 
         bool playerDetected = Physics2D.OverlapCircle(transform.position, cpRadius, playerLayer);
 
-        MasterReport();
+        if (playerDetected) MasterReport();
 
         return playerDetected;
     }
@@ -48,8 +49,8 @@ public class SavePoint : MonoBehaviour
         master.MasterRecieve(serialNumber);
     }
 
-    public Transform GetSpawnLocation() {
-        return spawnPoint.transform;
+    public Vector3 GetSpawnLocation() {
+        return spawnPoint.transform.position;
     }
 
     public bool isActive() {

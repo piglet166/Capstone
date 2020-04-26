@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Quit();
     }
 
     public float Walk() {
@@ -36,10 +37,9 @@ public class PlayerInput : MonoBehaviour
         return 0f;
     }
 
-    public float Dash() {
-        if (Input.GetKeyDown(KeyCode.E)) return 1f;
-        else if (Input.GetKeyDown(KeyCode.Q)) return -1f;
-        else return 0f;
+    public void Quit() {
+        if (Input.GetKeyDown(KeyCode.Tab))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     public bool Jump() {

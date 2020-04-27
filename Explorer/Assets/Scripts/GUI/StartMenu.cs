@@ -9,6 +9,10 @@ public class StartMenu : MonoBehaviour
         Cursor.visible = true;
     }
 
+    private void Update() {
+        if (Input.GetKey(KeyCode.Escape)) Application.Quit();
+    }
+
     public void PlayGame() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }

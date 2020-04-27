@@ -7,6 +7,7 @@ public class Timer : MonoBehaviour
 {
     public float timeStart;
     public Text textBox;
+    //public Score score;
     
     // Start is called before the first frame update
     void Start()
@@ -20,5 +21,6 @@ public class Timer : MonoBehaviour
     {
         timeStart += Time.deltaTime;
         textBox.text = Mathf.Round(timeStart).ToString() + " Seconds";
+        Score.Instance.KeepTime(timeStart);
     }
 }

@@ -13,10 +13,13 @@ public class Master : MonoBehaviour
     public int deaths;
     public int enemiesLeft;
     public HealthBar hb;
+    //public Score score;
 
     // Start is called before the first frame update
     void Start()
     {
+        Score.Instance.ResetScore();
+
         respawns = GameObject.FindGameObjectsWithTag("Respawn");
         savePoints = new SavePoint[respawns.Length];
 
@@ -28,6 +31,8 @@ public class Master : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         enemiesLeft = enemies.Length;
 
+        Score.Instance.EnemyTotal(enemiesLeft);
+
         hb.SetMaxHealth(player.MaxHealth);
     }
 
@@ -35,6 +40,7 @@ public class Master : MonoBehaviour
     void Update()
     {
         hb.ShowHealth(player.health);
+
     }
 
     public void MasterRecieve(int sr) {
@@ -58,9 +64,11 @@ public class Master : MonoBehaviour
         player.gameObject.transform.position = respawnPos;
         player.health = 25;
         deaths += 1;
+        Score.Instance.DeathCounter(deaths);
     }
 
     public void EnemyDied() {
         enemiesLeft -= 1;
+        Score.Instance.EnemyCounter(enemiesLeft);
     }
 }

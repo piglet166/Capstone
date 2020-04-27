@@ -39,7 +39,7 @@ public class PlayerInput : MonoBehaviour
 
     public void Quit() {
         if (Input.GetKeyDown(KeyCode.Tab))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            SceneManager.LoadScene(0);
     }
 
     public bool Jump() {

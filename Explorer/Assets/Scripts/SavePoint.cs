@@ -10,6 +10,8 @@ public class SavePoint : MonoBehaviour
     public Animator anim;
     public float cpRadius;
     public LayerMask playerLayer;
+    public AudioClip respawnAudio;
+    public AudioSource cpAS;
 
     [SerializeField] bool active;
     
@@ -40,7 +42,10 @@ public class SavePoint : MonoBehaviour
 
         bool playerDetected = Physics2D.OverlapCircle(transform.position, cpRadius, playerLayer);
 
-        if (playerDetected) MasterReport();
+        if (playerDetected) {
+            if(!isActive()) cpAS.PlayOneShot(respawnAudio);
+            MasterReport();
+        }
 
         return playerDetected;
     }

@@ -10,6 +10,9 @@ public class Health : MonoBehaviour
     public bool player;
     bool invincible;
     public bool bullet;
+    public AudioClip tankGrabed;
+    public AudioClip respawnClip;
+    public AudioSource hlthAS;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +34,10 @@ public class Health : MonoBehaviour
     }
 
     void Die() {
-        if (player) master.MasterRespawn();
+        if (player) {
+            master.MasterRespawn();
+            hlthAS.PlayOneShot(respawnClip);
+        }
 
         if (!player) {
 
@@ -43,7 +49,11 @@ public class Health : MonoBehaviour
 
     public void Heal(int heal) {
 
-        if (player) health = health + heal;
+        if (player) {
+
+            health = health + heal;
+            hlthAS.PlayOneShot(tankGrabed);
+        }
 
         if (health > MaxHealth) health = MaxHealth;
     }

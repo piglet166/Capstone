@@ -13,7 +13,7 @@ public class Master : MonoBehaviour
     public int deaths;
     public int enemiesLeft;
     public HealthBar hb;
-    
+
     // Start is called before the first frame update
     void Start()
     {

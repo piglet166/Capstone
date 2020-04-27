@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform muzzle;
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
+    public AudioClip jumpAudio;
+    public AudioSource plyrAS;
     [SerializeField]
     bool left;
     [SerializeField]
@@ -106,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
         if (grounded && input.Jump()) {
             rb.velocity = new Vector2(0f, rb.velocity.y);
             rb.AddForce(new Vector2(0, jumpSpeed));
+            plyrAS.PlayOneShot(jumpAudio);
         } else if (!grounded) {
             move = input.Walk();
             
@@ -114,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
             if(rb.velocity.y <= 0.01f && rb.velocity.y >= -0.01f && input.Jump()) {
                 rb.velocity = new Vector2(0f, rb.velocity.y);
                 rb.AddForce(new Vector2(0, jumpSpeed));
+                plyrAS.PlayOneShot(jumpAudio);
             }
         }
     }
